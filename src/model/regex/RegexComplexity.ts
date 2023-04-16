@@ -165,8 +165,7 @@ class RegexComplexity {
     if (isNaN(normalizedComplexity) || normalizedComplexity < 0) return 0
     // the nearer normalizedComplexity is to zero, the closer complexityMapValue is to 1
     // this will make the complexityMapValue more effective the higher the complexity is
-    const normalizedComplexityMapValue = Math.pow(complexityMapValue, normalizedComplexity)
-    return normalizedComplexityMapValue
+    return Math.pow(complexityMapValue, normalizedComplexity)
   }
 
   /**
