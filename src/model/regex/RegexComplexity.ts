@@ -125,7 +125,7 @@ class RegexComplexity {
     return [...cumulativeRandomMap.entries()]
       .filter(value => value[1] > random) //filter every value smaller than random
       .sort((a, b) => a[1] - b[1]) //sort by accending probability
-      .reduce((a, b) => a)[0] // get first element (smallest probability) key
+      .reduce((a) => a)[0] // get first element (smallest probability) key
   }
 
   /**
