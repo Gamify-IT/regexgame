@@ -158,7 +158,7 @@ class RegexComplexity {
    * @returns a factor to be multiplied with the original probability
    */
   private static calulateComplexityFactorForComplexityMap(complexityMapValue: number, complexity: number): number {
-    if (complexity < 0) throw "invalid complexity " + complexity
+    if (complexity < 0) throw new Error("invalid complexity " + complexity)
     if (complexity == 0) return 1
     // normalize the complexity using log to dampen its effect
     const normalizedComplexity = Math.log(complexity * 0.5)
