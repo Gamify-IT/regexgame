@@ -18,12 +18,12 @@ const answersContainer = document.querySelector("#answers")! as HTMLDivElement
 /**
  * The current Riddle displayed to the user.
  */
-var currentRiddle: Riddle | undefined
+let currentRiddle: Riddle | undefined
 
 /**
  * the current round
  */
-var round: number
+let round: number
 
 /**
  * Display a riddle to the user
