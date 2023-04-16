@@ -31,7 +31,7 @@ function shuffleArray<T>(array: Array<T>): Array<T> {
 }
 
 function removeDuplicatesFromArray<T>(array: Array<T>): Array<T> {
-  return array.filter((value, index, array) => array.indexOf(value) == index)
+  return array.filter((value, index, innerArray) => innerArray.indexOf(value) == index)
 }
 
 function clamp(value: number, minimum: number, maximum: number): number {
