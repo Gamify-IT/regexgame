@@ -19,12 +19,12 @@ class Regex {
   }
 
   generateCorrectAnswer(lengthFactor?: number): string {
-    if (!lengthFactor) lengthFactor = RegexComplexity.calculateAnswerLengthFactor(this.complexity, this.length)
+    if (!lengthFactor) lengthFactor = RegexComplexity.calculateAnswerLengthFactor(this.length)
     return this.regex.generateCorrectAnswer(lengthFactor)
   }
 
   generateWrongAnswer(lengthFactor?: number, wrongChance?: number): string {
-    if (!lengthFactor) lengthFactor = RegexComplexity.calculateAnswerLengthFactor(this.complexity, this.length)
+    if (!lengthFactor) lengthFactor = RegexComplexity.calculateAnswerLengthFactor(this.length)
     if (!wrongChance) wrongChance = RegexComplexity.calculateWrongChanceFromComplexity(this.complexity)
     const answer = this.regex.generatePossiblyWrongAnswer(lengthFactor, wrongChance)
     if (!this.generateRegExp().test(answer))

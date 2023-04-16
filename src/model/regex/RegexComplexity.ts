@@ -243,7 +243,7 @@ class RegexComplexity {
     return Math.max(complexity - splitCount, 0)
   }
 
-  static calculateAnswerLengthFactor(complexity: number, regexLength: number): number {
+  static calculateAnswerLengthFactor(regexLength: number): number {
     return regexLength
   }
 
