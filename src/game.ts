@@ -93,7 +93,14 @@ async function nextRiddle() {
 
 function gameEnd() {
   displayScore()
+  sendResult()
   switchToStartPage()
+}
+
+async function sendResult() {
+  console.log(gameConfigurationBySearchQuery, gameConfigurationBySearchQuery!.id.length)
+  if (gameConfigurationBySearchQuery!.id.length === 0) return
+  saveGameResult(gameConfigurationBySearchQuery!.id, calculateCompletionPercentage() * 100, round)
 }
 
 function removeCurrentRiddle() {
