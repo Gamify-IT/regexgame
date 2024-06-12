@@ -12,7 +12,7 @@ services:
       POSTGRES_SETUP: >
         keycloak/default.sql
         overworld/default.sql
-  #      regexgame/default.sql
+        regexgame/default.sql
 
   keycloak-db:
     container_name: keycloak-db
@@ -118,7 +118,7 @@ services:
 
   regexgame:
     container_name: regexgame
-    image: ghcr.io/gamify-it/regexgame:main
+    build: .
     restart: always
     pull_policy: always
     expose:
