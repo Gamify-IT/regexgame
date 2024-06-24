@@ -37,7 +37,7 @@ function displayScore() {
     return
   }
   scoreElement.innerText = `Score: ${round}`
-  scorePercentageElement.innerText = `Completion: ${calculateCompletionPercentage() * 100}%`
+  scorePercentageElement.innerText = `Completion: ${Math.trunc(calculateCompletionPercentage() * 100)}%`
   startPageContainer.classList.add("finished")
   playButton.classList.add("again")
 }
