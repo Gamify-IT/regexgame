@@ -27,8 +27,7 @@ function generateRiddle(round?: number, configuration?: GameConfiguration): Ridd
 
   let complexity = configuration.complexity
   if (round != undefined) complexity += RegexComplexity.calculateRoundComplexityFactor(round)
-  // FIXME allowedRegexstructure from actual config produces crash
-  let regex = RegexGenerator.generateRegex(defaultConfiguration.allowedRegexStructures, complexity)
+  let regex = RegexGenerator.generateRegex(configuration.allowedRegexStructures, complexity)
   let answers = generateRegexAnswers(regex, configuration.answerCount)
 
   return new Riddle(regex, answers)

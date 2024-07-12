@@ -4,7 +4,6 @@ async function fetchGameConfiguration(id: string): Promise<GameConfiguration> {
   let fetchResponse = await fetch(apiPath + "configurations/" + id)
   if (fetchResponse.status != 200) throw fetchResponse.status
   let json = await fetchResponse.text()
-  console.log(json) // receives right configuration
   return GameConfiguration.fromJSON(json)
 }
 

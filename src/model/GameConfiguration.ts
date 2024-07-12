@@ -30,7 +30,7 @@ class GameConfiguration {
     if (!(parsedJSON.allowedRegexStructures instanceof Array)) throw new Error("regex structures invalid. Expected array but got " + parsedJSON.allowedRegexStructures)
     let allowedRegexStructures = new Set<RegexStructure>();
     (parsedJSON.allowedRegexStructures as Array<string>).forEach((regexStructureString) => {
-      allowedRegexStructures.add(getRegexStructureFromString(regexStructureString)) //FIXME
+      allowedRegexStructures.add(getRegexStructureFromString(regexStructureString))
     })
     let gameconfiguration: GameConfiguration = new GameConfiguration(parsedJSON.id, allowedRegexStructures)
     if (parsedJSON.complexity) gameconfiguration.complexity = parsedJSON.complexity
