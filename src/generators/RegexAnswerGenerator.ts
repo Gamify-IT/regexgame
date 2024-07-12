@@ -16,7 +16,9 @@ function generateRegexAnswers(regex: Regex, answerCount: number, correctAnswerRa
     answers.push(regex.generateCorrectAnswer())
   for (let i = 0; i < incorrectAnswerCount; i++)
     answers.push(regex.generateWrongAnswer())
-  answers = removeDuplicatesFromArray(answers)
+  console.log("answers with duplicates: ",answers)
+  answers = removeDuplicatesFromArray(answers) // FIXME might cause missing answers bc of duplicates
+  console.log("answers without duplicates: ",answers)
   answers = shuffleArray(answers)
   return answers
 }
