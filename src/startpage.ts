@@ -36,7 +36,8 @@ function displayScore() {
     playButton.classList.remove("again")
     return
   }
-  scoreElement.innerText = `Score: ${round}`
+  console.log("startpage: ",reward)
+  scoreElement.innerText = `Score: ${round}  Reward: ${reward} coin(s)`
   scorePercentageElement.innerText = `Completion: ${Math.trunc(calculateCompletionPercentage() * 100)}%`
   startPageContainer.classList.add("finished")
   playButton.classList.add("again")

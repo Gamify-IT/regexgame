@@ -40,6 +40,11 @@ var countdownTimer: number
 
 let noTimer: boolean = false
 
+/**
+ * reward from playing the game (coins)
+ */
+let reward: number;
+
 const gameProgressBar = (document.querySelector("#gameprogress") as HTMLDivElement)!
 const timeoutProgressBar = (document.querySelector("#timeoutbar") as HTMLDivElement)!
 
@@ -103,14 +108,21 @@ async function nextRiddle() {
 }
 
 function gameEnd() {
-  displayScore()
-  sendResult()
-  switchToStartPage()
+  sendResult().then(() => {
+    displayScore()
+    switchToStartPage()
+  })
 }
 
 async function sendResult() {
-  if (gameConfigurationBySearchQuery!.id.length === 0) return
-  saveGameResult(gameConfigurationBySearchQuery!.id, calculateCompletionPercentage() * 100, round)
+  if (gameConfigurationBySearchQuery!.id.length === 0) {
+    return
+  }
+  return saveGameResult(gameConfigurationBySearchQuery!.id, calculateCompletionPercentage() * 100, round).then((text) => {
+    let jsonString = JSON.parse(text);
+    reward = jsonString.rewards;
+    console.log("reward: ",reward)
+  })
 }
 
 function removeCurrentRiddle() {
