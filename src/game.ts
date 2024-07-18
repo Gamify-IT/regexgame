@@ -38,6 +38,8 @@ var gameStartTimestamp: Date
  */
 var countdownTimer: number
 
+let noTimer: boolean = false
+
 /**
  * reward from playing the game (coins)
  */
@@ -70,8 +72,15 @@ async function displayRiddle(riddle: Riddle) {
     gameProgressBar.innerHTML = progress + "%"
   }
   await gameBoxHeightTransitionEnd()
-  timeoutProgressBar.style.setProperty("--countdown", getRemainingTime() + "s")
-  timeoutProgressBar.classList.add("countdown")
+
+  if(getRemainingTime() == Number.POSITIVE_INFINITY) {
+    noTimer = true
+    // FIXME make bar be full green when infinity, and display Infinity instead of infinitys
+  } else {
+    noTimer = false
+    timeoutProgressBar.style.setProperty("--countdown", getRemainingTime() + "s")
+    timeoutProgressBar.classList.add("countdown")
+  }
 }
 
 function getRemainingTime() {
@@ -86,9 +95,11 @@ function calculateCompletionPercentage() {
 async function nextRiddle() {
   round++
   try {
-    await displayRiddle(generateRiddle(round))
-    if (countdownTimer > 0) clearTimeout(countdownTimer)
-    countdownTimer = setTimeout(gameEnd, getRemainingTime() * 1000)
+    await displayRiddle(generateRiddle(round, gameConfigurationBySearchQuery))
+    if(!noTimer) {
+      if (countdownTimer > 0) clearTimeout(countdownTimer)
+      countdownTimer = setTimeout(gameEnd, getRemainingTime() * 1000)
+    }
   } catch (e) {
     console.error("error creating next riddle", e)
     //TODO: notify user?
@@ -125,7 +136,7 @@ function onAnswerSelected(button: HTMLButtonElement, answer: string) {
   let correctAnswer: boolean
 
   if (!currentRiddle) throw new Error("current riddle undefined")
-  if (countdownTimer > 0) clearTimeout(countdownTimer)
+  if (countdownTimer > 0 && !noTimer) clearTimeout(countdownTimer)
   if (answersContainer.querySelector("button.selected")) {
     correctAnswer = answersContainer.querySelector("button.selected.correct") != undefined
     if (correctAnswer && nextAnswerTimeout !== undefined) {
